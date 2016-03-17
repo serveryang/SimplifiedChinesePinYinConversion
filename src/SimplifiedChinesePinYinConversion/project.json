@@ -1,0 +1,41 @@
+{
+    "version": "1.0.0",
+    "description": "Simplified Chinese PinYin Conversion Class Library",
+    "authors": [ "serveryang" ],
+    "tags": [ "Simplified Chinese PinYin Conversion" ],
+    "projectUrl": "https://github.com/serveryang/SimplifiedChinesePinYinConversion.git",
+    "licenseUrl": "",
+
+    "frameworks": {
+        "net451": {
+            "dependencies": {
+                "ChnCharInfo": "1.0.0-*"
+            }
+        },
+        "net452": {
+            "dependencies": {
+                "ChnCharInfo": "1.0.0-*"
+            }
+        },
+        "net46": {
+            "dependencies": {
+                "ChnCharInfo": "1.0.0-*"
+            }
+        },
+        "dnx451": {
+            "dependencies": {
+                "ChnCharInfo": "1.0.0-*"
+            }
+        },
+        "dnx46": {
+            "dependencies": {
+                "ChnCharInfo": "1.0.0-*"
+            }
+        },
+        "dnx461": {
+            "dependencies": {
+                "ChnCharInfo": "1.0.0-*"
+            }
+        }
+    }
+}
