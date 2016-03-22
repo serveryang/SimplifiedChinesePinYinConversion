@@ -2,6 +2,10 @@
 
 namespace System
 {
+    /// <summary>
+    /// 扩展String类，用于获取汉字全拼或汉字首字母拼音。
+    /// TODO: 无法实现对多音字正确语议下的拼音的提取。
+    /// </summary>
     public static class StringExtension
     {
         /// <summary>
@@ -15,16 +19,14 @@ namespace System
 
             foreach (char word in chineseWords)
             {
-                try
-                {
-                    var chineseChar = new ChineseChar(word);
-                    var wordPinYin = chineseChar.Pinyins[0].ToString();
-                    pinyin += wordPinYin.Substring(0, wordPinYin.Length - 1);
-                }
-                catch
+                if (!ChineseChar.IsValidChar(word))
                 {
                     pinyin += word.ToString();
+                    continue;
                 }
+
+                var wordPinYin = SingleCharPinYin(word);
+                pinyin += wordPinYin.Substring(0, wordPinYin.Length - 1);
             }
 
             return pinyin;
@@ -41,19 +43,24 @@ namespace System
 
             foreach (char word in chineseWords)
             {
-                try
-                {
-                    ChineseChar chineseChar = new ChineseChar(word);
-                    string currentWordPinYin = chineseChar.Pinyins[0].ToString();
-                    pinYinAbbr += currentWordPinYin.Substring(0, 1);
-                }
-                catch
+                if (!ChineseChar.IsValidChar(word))
                 {
                     pinYinAbbr += word.ToString();
+                    continue;
                 }
+
+                string wordPinYin = SingleCharPinYin(word);
+                pinYinAbbr += wordPinYin.Substring(0, 1);
             }
 
             return pinYinAbbr;
+        }
+
+        private static string SingleCharPinYin(char word)
+        {
+            var chineseChar = new ChineseChar(word);
+
+            return chineseChar.Pinyins[0].ToString();
         }
     }
 }
